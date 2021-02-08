@@ -1,14 +1,14 @@
 import React from 'react';
-import './randomBlock.css';
+import './peopleInfo.css';
 
-const RandomBlock = () => {
+const PeopleInfo = () => {
     return (
-        <div className="block random-block">
+        <div className="block people-info">
             <div className="random-block-wrapper">
                 <img className="random-block-wrapper-picture" src="" alt=""/>
             </div>
             <div className="random-block-info">
-                <h3 className="random-block-info-title">Planet Name</h3>
+                <h3 className="random-block-info-title">R2-D2</h3>
 
                 <ul className="random-block-info-list">
                     <li className="random-block-info-item">
@@ -30,4 +30,4 @@ const RandomBlock = () => {
     );
 };
 
-export default RandomBlock;
+export default PeopleInfo;

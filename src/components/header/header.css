@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    color: #fff;
+    text-shadow: #000 0px 0px 8px;
+    font-weight: bold;
+} 
+
+.header-list {
+    display: flex;
+}
+
+.header-item {
+    margin-right: 20px;
+}
+
+.header-item:last-child {
+    margin-right: unset;   
+}
+
+.header-button {
+    color: #fff;
+    text-shadow: #000 0px 0px 8px;
+    font-size: 20px;
+}

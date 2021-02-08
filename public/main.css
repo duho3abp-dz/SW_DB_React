@@ -1,4 +1,9 @@
+* {
+    color: #fff;
+}
+
 html {
+    position: relative;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -6,4 +11,42 @@ html {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+body {
+    background-color: transparent;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+button, 
+button:active, 
+button:focus {
+    outline: none;
+}
+
+dl, ol, ul {
+    margin-bottom: 0;
+}
+
+ol, ul {
+    padding-left: 0;
+}
+
+.block {
+    background-color: #000;
+    border-radius: 7px;
+    overflow: hidden;
+    opacity: .7;
+    display: flex;
+    padding: 20px;
 }
