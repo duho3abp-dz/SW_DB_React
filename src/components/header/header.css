@@ -5,8 +5,10 @@
 }
 
 .title {
-    color: #fff;
-    text-shadow: #000 0px 0px 8px;
+    color: #000;
+    text-shadow: yellow 0px 0px 2px;
+    /* text-shadow: #000 0px 0px 8px; */
+    /* color: #fff; */
     font-weight: bold;
 } 
 
@@ -26,4 +28,5 @@
     color: #fff;
     text-shadow: #000 0px 0px 8px;
     font-size: 20px;
+    font-weight: bold;
 }

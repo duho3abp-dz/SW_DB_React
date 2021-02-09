@@ -17,12 +17,12 @@ export default class DataBase {
     }
 
     getAllStarships = async (page = 1) => {
-        const res = await this.getResourse(`starships/?page=${page}`)
+        const res = await this.getResourse(`starships/?page=${page}`);
         return res.results;
     }
 
     getAllPlanets = async (page = 1) => {
-        const res = await this.getResourse(`planets/?page=${page}`)
+        const res = await this.getResourse(`planets/?page=${page}`);
         return res.results;
     }
 
