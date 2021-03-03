@@ -13,12 +13,12 @@ export default class DataBase {
 
     getAllPeople = async (page = 1) => {
         const res = await this.getResourse(`people/?page=${page}`);
-        return res.results;
+        return res.results.map((people) => this._transformPlanet(people));
     }
 
     getAllStarships = async (page = 1) => {
         const res = await this.getResourse(`starships/?page=${page}`);
-        return res.results;
+        return res.results.map((starship) => this._transformStarships(starship));
     }
 
     getAllPlanets = async (page = 1) => {
@@ -26,12 +26,14 @@ export default class DataBase {
         return res.results.map((planet) => this._transformPlanet(planet));
     }
 
-    getPeople = (id = 1) => {
-        return this.getResourse(`people/${id}`);
+    getPeople = async (id = 1) => {
+        const result = await this.getResourse(`people/${id}`);
+        return then._transformPeople(result);
     }
 
-    getStarship = (id = 1) => {
-        return this.getResourse(`starships/${id}`);
+    getStarship = async (id = 1) => {
+        const result = await this.getResourse(`starships/${id}`);
+        return then._transformStarships(result);
     }
 
     getPlanet = async (id = 1) => {
@@ -43,10 +45,38 @@ export default class DataBase {
         return url.match(/\/([0-9]*)\/$/)[1];
     }
 
-    _transformPlanet = ({ name, diameter, climate, population, rotation_period, url }) => {
-        const id = this._extractId(url);
-        return { name, diameter, climate, population, id,
-            rotationPeriod: rotation_period 
+    _transformPlanet = (planet) => {
+        return {
+            id: this._extractId(planet.url),
+            name: planet.name, 
+            diameter: planet.diameter, 
+            climate: planet.climate, 
+            population: planet.population, 
+            rotationPeriod: planet.rotation_period
+        };
+    }
+
+    _transformStarships = (starship) => {
+        return {
+            id: this._extractId(starship.url),
+            name: starship.name, 
+            model: starship.model, 
+            manufacturer: starship.manufacturer, 
+            costInCredits: starship.costInCredits, 
+            length: starship.length,
+            crew: starship.crew,
+            passengers: starship.passengers,
+            cargoCapacity: starship.cargoCapacity
+        };
+    }
+
+    _transformPeople = (people) => {
+        return {
+            id: this._extractId(people.url),
+            name: people.name, 
+            gender: people.gender, 
+            birthYear: people.birthYear, 
+            eyeColor: people.eyeColor
         };
     }
 }

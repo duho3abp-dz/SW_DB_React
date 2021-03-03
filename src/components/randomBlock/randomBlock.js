@@ -7,14 +7,7 @@ export default class RandomBlock extends Component {
     dataBase = new DataBase();
 
     state = {
-        planetInfo: {
-            name: '',
-            diameter: '',
-            climate: '',
-            population: '',
-            id: '',
-            rotationPeriod: ''
-        }
+        planet: {}
     }
 
     componentDidMount() {
@@ -22,15 +15,20 @@ export default class RandomBlock extends Component {
         setInterval(() => this.updatePlanet(), 5000); // !!!!!!!!!!!!!!! раскомментировать !!!!!!!!!!!!!!!
     }
 
+    onPlanetLoaded = (planet) => {
+        this.setState({ planet })
+    }
+
     updatePlanet = () => {
         const randomCount = Math.floor(Math.random() * (25 - 2) + 2);
 
-        this.dataBase.getPlanet(randomCount)
-        .then((newPlanetInfo) => this.setState({ planetInfo: newPlanetInfo }));
+        this.dataBase
+            .getPlanet(randomCount)
+            .then(this.onPlanetLoaded);
     }
     
     render() {
-        const { name, diameter, climate, population, id, rotationPeriod } = this.state.planetInfo;
+        const { planet: {name, diameter, climate, population, id, rotationPeriod} } = this.state;
 
         return (
             <div className="block random-block">
