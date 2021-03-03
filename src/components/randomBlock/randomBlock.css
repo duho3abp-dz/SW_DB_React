@@ -1,5 +1,8 @@
 .random-block-wrapper {
     width: 40%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 3px solid #000;
 }
 
 .random-block-info {

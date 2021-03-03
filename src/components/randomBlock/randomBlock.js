@@ -19,7 +19,7 @@ export default class RandomBlock extends Component {
 
     componentDidMount() {
         this.updatePlanet();
-        // setInterval(() => this.updatePlanet(), 5000); // !!!!!!!!!!!!!!! раскомментировать !!!!!!!!!!!!!!!
+        setInterval(() => this.updatePlanet(), 5000); // !!!!!!!!!!!!!!! раскомментировать !!!!!!!!!!!!!!!
     }
 
     updatePlanet = () => {
@@ -41,7 +41,7 @@ export default class RandomBlock extends Component {
         return (
             <div className="block random-block">
                 <div className="random-block-wrapper">
-                    <img className="random-block-wrapper-picture" src={ `https://localhost:3000/img/planets/${ id }.jpg` } alt={ name }/>
+                    <img className="random-block-wrapper-picture" src={ `./img/planets/${ id }.jpg` } alt={ name }/>
                 </div>
                 <div className="random-block-info">
                     <h3 className="random-block-info-title">{ name }</h3>

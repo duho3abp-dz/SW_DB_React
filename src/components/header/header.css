@@ -6,9 +6,9 @@
 
 .title {
     color: #000;
-    text-shadow: yellow 0px 0px 2px;
-    /* text-shadow: #000 0px 0px 8px; */
-    /* color: #fff; */
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 0 20px;
     font-weight: bold;
 } 
 
