@@ -23,7 +23,7 @@ export default class DataBase {
 
     getAllPlanets = async (page = 1) => {
         const res = await this.getResourse(`planets/?page=${page}`);
-        return res.results;
+        return res.results.map((planet) => this._transformPlanet(planet));
     }
 
     getPeople = (id = 1) => {
@@ -34,7 +34,19 @@ export default class DataBase {
         return this.getResourse(`starships/${id}`);
     }
 
-    getPlanet = (id = 1) => {
-        return this.getResourse(`planets/${id}`);
+    getPlanet = async (id = 1) => {
+        const result = await this.getResourse(`planets/${id}`);
+        return this._transformPlanet(result);
+    }
+
+    _extractId = (url) => {
+        return url.match(/\/([0-9]*)\/$/)[1];
+    }
+
+    _transformPlanet = ({ name, diameter, climate, population, rotation_period, url }) => {
+        const id = this._extractId(url);
+        return { name, diameter, climate, population, id,
+            rotationPeriod: rotation_period 
+        };
     }
 }

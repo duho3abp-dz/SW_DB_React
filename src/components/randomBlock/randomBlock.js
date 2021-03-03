@@ -26,13 +26,7 @@ export default class RandomBlock extends Component {
         const randomCount = Math.floor(Math.random() * (25 - 2) + 2);
 
         this.dataBase.getPlanet(randomCount)
-            .then(({ name, diameter, climate, population, rotation_period }) => {
-                const newPlanetInfo = { name, diameter, climate, population,
-                    id: randomCount, 
-                    rotationPeriod: rotation_period 
-                };
-                this.setState(({ planetInfo: newPlanetInfo }));
-            });
+        .then((newPlanetInfo) => this.setState({ planetInfo: newPlanetInfo }));
     }
     
     render() {
