@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import './randomBlock.css';
 
 import DataBase from '../../service/dataBase';
+import Loader from '../loader';
 
 export default class RandomBlock extends Component {
     dataBase = new DataBase();
 
     state = {
-        planet: {}
+        planet: {},
+        loading: true
     }
 
     componentDidMount() {
@@ -24,20 +26,21 @@ export default class RandomBlock extends Component {
 
         this.dataBase
             .getPlanet(randomCount)
-            .then(this.onPlanetLoaded);
+            .then(this.onPlanetLoaded)
+            .finally(() => this.setState({ loading: false }));
     }
     
     render() {
-        const { planet: {name, diameter, climate, population, id, rotationPeriod} } = this.state;
+        const { planet: {name, diameter, climate, population, id, rotationPeriod}, loading } = this.state;
 
-        return (
-            <div className="block random-block">
+        const randomBlock = (
+            <>
                 <div className="random-block-wrapper">
                     <img className="random-block-wrapper-picture" src={ `./img/planets/${ id }.jpg` } alt={ name }/>
                 </div>
                 <div className="random-block-info">
                     <h3 className="random-block-info-title">{ name }</h3>
-    
+
                     <ul className="random-block-info-list">
                         <li className="random-block-info-item">
                             <span className="random-block-info-name">Population:</span>
@@ -56,9 +59,13 @@ export default class RandomBlock extends Component {
                             <span className="random-block-info-text">{ rotationPeriod }</span>
                         </li>
                     </ul>
-    
+
                 </div>
-            </div>
+            </>
         );
+
+        const content = loading ? <Loader /> : randomBlock;
+
+        return <div className="block random-block">{ content }</div>;
     }
 }
