@@ -11,12 +11,25 @@ export default class RandomBlock extends Component {
     state = {
         planet: {},
         loading: true,
-        error: false
+        error: false,
+        interval: null
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.interval);
+        this.setState({ 
+            planet: {},
+            loading: true,
+            error: false,
+            interval: null
+        });
     }
 
     componentDidMount() {
         this.updatePlanet();
-        setInterval(() => this.updatePlanet(), 5000);
+        this.setState({ 
+            interval: setInterval(() => this.updatePlanet(), 5000)
+        });
     }
 
     onPlanetLoaded = (planet) => {
@@ -32,7 +45,7 @@ export default class RandomBlock extends Component {
     }
 
     updatePlanet = () => {
-        const randomCount = Math.floor(Math.random() * (25 - 2) + 2);
+        const randomCount = Math.floor(Math.random() * (25 - 3) + 3);
 
         this.dataBase
             .getPlanet(randomCount)

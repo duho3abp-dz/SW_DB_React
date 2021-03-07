@@ -13,7 +13,7 @@ export default class DataBase {
 
     getAllPeople = async (page = 1) => {
         const res = await this.getResourse(`people/?page=${page}`);
-        return res.results.map((people) => this._transformPlanet(people));
+        return res.results.map((people) => this._transformPeople(people));
     }
 
     getAllStarships = async (page = 1) => {
@@ -62,11 +62,11 @@ export default class DataBase {
             name: starship.name, 
             model: starship.model, 
             manufacturer: starship.manufacturer, 
-            costInCredits: starship.costInCredits, 
+            costInCredits: starship.cost_in_credits, 
             length: starship.length,
             crew: starship.crew,
             passengers: starship.passengers,
-            cargoCapacity: starship.cargoCapacity
+            cargoCapacity: starship.cargo_capacity
         };
     }
 
@@ -75,8 +75,8 @@ export default class DataBase {
             id: this._extractId(people.url),
             name: people.name, 
             gender: people.gender, 
-            birthYear: people.birthYear, 
-            eyeColor: people.eyeColor
+            birthYear: people.birth_year, 
+            eyeColor: people.eye_color
         };
     }
 }

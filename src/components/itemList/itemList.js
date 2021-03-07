@@ -1,28 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './itemList.css';
 
-const ItemList = () => {
-    const items = [
-        { value: 'Luke Skywalker', id: 'Luke Skywalker' },
-        { value: 'Darth Vader', id: 'Darth Vader' },
-        { value: 'R2-D2', id: 'R2-D2' }
-    ];
+import DataBase from '../../service/dataBase';
+import Loader from '../loader';
 
-    const itemList = items.map(({ value, id }) => {
+export default class ItemList extends Component {
+    dataBase = new DataBase();
+
+    state = {
+        items: []
+    }
+
+    componentDidMount() {
+        this.dataBase
+            .getAllPeople()
+            .then((items) => this.setState({ items }));
+    }
+
+    renderItems = (arr) => {
+        return arr.map(({ name, id }) => {
+            return (
+                <li key={ id } className="item-list-item">
+                    <button className="item-list-button"
+                        type="button"
+                        onClick={ () => this.props.setItem(id) } >
+                        { name }
+                    </button>
+                </li>
+            );
+        });
+    };
+
+    render() {
+        const { items } = this.state;
+
+        const content = !items.length ? <Loader /> : this.renderItems(items);
+
         return (
-            <li key={ id } className="item-list-item">
-                <button className="item-list-button">{ value }</button>
-            </li>
+            <div className="block item-list">
+                <ul className="item-list-collection">
+                    { content }
+                </ul>
+            </div>
         );
-    });
-
-    return (
-        <div className="block item-list">
-            <ul className="item-list-collection">
-                { itemList }
-            </ul>
-        </div>
-    );
-};
-
-export default ItemList;
+    }
+}
