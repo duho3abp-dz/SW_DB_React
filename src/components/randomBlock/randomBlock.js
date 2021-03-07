@@ -3,22 +3,32 @@ import './randomBlock.css';
 
 import DataBase from '../../service/dataBase';
 import Loader from '../loader';
+import Error from '../error';
 
 export default class RandomBlock extends Component {
     dataBase = new DataBase();
 
     state = {
         planet: {},
-        loading: true
+        loading: true,
+        error: false
     }
 
     componentDidMount() {
         this.updatePlanet();
-        setInterval(() => this.updatePlanet(), 5000); // !!!!!!!!!!!!!!! раскомментировать !!!!!!!!!!!!!!!
+        setInterval(() => this.updatePlanet(), 5000);
     }
 
     onPlanetLoaded = (planet) => {
-        this.setState({ planet })
+        this.setState({ planet, error: false });
+    }
+
+    onError = () => {
+        this.setState({ error: true })
+    }
+
+    onFinally = () => {
+        this.setState({ loading: false })
     }
 
     updatePlanet = () => {
@@ -27,13 +37,16 @@ export default class RandomBlock extends Component {
         this.dataBase
             .getPlanet(randomCount)
             .then(this.onPlanetLoaded)
-            .finally(() => this.setState({ loading: false }));
+            .catch(this.onError)
+            .finally(this.onFinally);
     }
     
     render() {
-        const { planet, loading } = this.state;
+        const { planet, loading, error } = this.state;
 
-        const content = loading ? <Loader /> : <PlanetView planet={ planet } />;
+        const content = error ? <Error /> 
+            : loading 
+            ? <Loader /> : <PlanetView planet={ planet } />;
 
         return <div className="block random-block">{ content }</div>;
     }
