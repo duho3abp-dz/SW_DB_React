@@ -4,9 +4,12 @@ import './loader.css';
 const Loader = () => {
     return (
         <div className="loader">
-            <div className="loadingio-spinner-spinner-g0ik63oyyhm">
-                <div className="ldio-wk0nqpov0u">
-                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div class="loadingio-spinner-double-ring-ay48tx3lp4n">
+                <div class="ldio-h42jzi90j67">
+                    <div></div>
+                    <div></div>
+                    <div><div></div></div>
+                    <div><div></div></div>
                 </div>
             </div>
         </div>
