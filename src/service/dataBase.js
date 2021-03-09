@@ -28,12 +28,12 @@ export default class DataBase {
 
     getPeople = async (id = 1) => {
         const result = await this.getResourse(`people/${id}`);
-        return then._transformPeople(result);
+        return this._transformPeople(result);
     }
 
     getStarship = async (id = 1) => {
         const result = await this.getResourse(`starships/${id}`);
-        return then._transformStarships(result);
+        return this._transformStarships(result);
     }
 
     getPlanet = async (id = 1) => {

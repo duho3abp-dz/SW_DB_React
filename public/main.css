@@ -16,6 +16,7 @@ html {
 body {
     background-color: transparent;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* letter-spacing: 0.5px !important; */
 }
 
 li {
