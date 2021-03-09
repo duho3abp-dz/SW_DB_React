@@ -2,24 +2,42 @@ import React, { Component } from 'react';
 import './peopleInfo.css';
 
 import DataBase from '../../service/dataBase';
+import Loader from '../loader';
 
 export default class PeopleInfo extends Component {
     dataBase = new DataBase();
 
     state = {
-        person: null
+        person: null,
+        loading: false
+    }
+
+    componentDidMount() {
+        this.updatePerson();
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.personId === this.props.personId) return;
 
-        this.dataBase
-            .getPeople(this.props.personId)
-            .then((person) => this.setState({ person }))
+        this.updatePerson();
     }
 
+    updatePerson = () => {
+        const { personId } = this.props;
+        if (!personId) return;
+
+        this.setState({ loading: true });
+
+        this.dataBase
+            .getPeople(personId)
+            .then((person) => this.setState({ person }))
+            .finally(() => this.setState({ loading: false }));
+    };
+
     render() {
-        const content = this.state.person ? <PersonRender person={ this.state.person } /> : 'Please, select a person!';
+        const { person, loading } = this.state;
+        
+        const content = loading ? <Loader /> : person ? <PersonRender person={ this.state.person } /> : 'Please, select a person';
 
         return (
             <div className="block people-info">
