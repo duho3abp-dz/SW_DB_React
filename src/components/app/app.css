@@ -19,14 +19,3 @@
 .app-toggle {
     margin-top: 15px;
 }
-
-.app-button {
-    padding: 5px 20px;
-    background-color: orange;
-    border-radius: 10px;
-    transition: background-color .2s ease;
-}
-
-.app-button:hover {
-    background-color: rgb(230, 150, 1);
-}

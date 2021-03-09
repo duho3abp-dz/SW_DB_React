@@ -1,0 +1,10 @@
+.button-random {
+    padding: 5px 20px;
+    background-color: orange;
+    border-radius: 10px;
+    transition: background-color .2s ease;
+}
+
+.button-random:hover {
+    background-color: rgb(230, 150, 1);
+}

@@ -11,25 +11,16 @@ export default class RandomBlock extends Component {
     state = {
         planet: {},
         loading: true,
-        error: false,
-        interval: null
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.state.interval);
-        this.setState({ 
-            planet: {},
-            loading: true,
-            error: false,
-            interval: null
-        });
+        error: false
     }
 
     componentDidMount() {
         this.updatePlanet();
-        this.setState({ 
-            interval: setInterval(() => this.updatePlanet(), 5000)
-        });
+        this.interval = setInterval(() => this.updatePlanet(), 5000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     onPlanetLoaded = (planet) => {
