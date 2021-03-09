@@ -5,12 +5,13 @@
 }
 
 .title {
-    color: #000;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.5);
-    padding: 0 20px;
-    font-weight: bold;
-} 
+    color: #fff;  
+    transition: color .2s ease;
+}
+
+.header__title-link:hover .title {
+    color: rgb(182, 199, 255);
+}
 
 .header-list {
     display: flex;
@@ -24,9 +25,12 @@
     margin-right: unset;   
 }
 
-.header-button {
+.header-link__text {
     color: #fff;
-    text-shadow: #000 0px 0px 8px;
     font-size: 20px;
-    font-weight: bold;
+    transition: color .2s ease;
+}
+
+.header-link:hover .header-link__text {
+    color: rgb(182, 199, 255);
 }

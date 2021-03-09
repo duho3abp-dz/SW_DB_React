@@ -3,15 +3,13 @@ import './app.css';
 
 import Header from '../header';
 import RandomBlock from '../randomBlock';
-import ItemList from '../itemList';
-import PeopleInfo from '../peopleInfo';
 import ButtonRandom from '../buttonRandom';
+import PeoplePage from '../peoplePage';
 import Error from '../error';
 
 export default class App extends Component {
     state = {
         randomOpen: true,
-        itemId: null,
         error: false
     };
 
@@ -23,12 +21,8 @@ export default class App extends Component {
         this.setState(({ randomOpen }) => ({ randomOpen: !randomOpen }));
     };
 
-    setItem = (itemId) => {
-        this.setState({ itemId });
-    };
-
     render() {
-        const { randomOpen, itemId, error } = this.state;
+        const { randomOpen, error } = this.state;
         
         const random = randomOpen ? <RandomBlock /> : null;
 
@@ -43,8 +37,7 @@ export default class App extends Component {
                     </div>
                     
                     <div className="app-content">
-                        <ItemList setItem={ this.setItem } />
-                        <PeopleInfo personId={itemId} />
+                        <PeoplePage />
                     </div>
                 </div>
             </div>

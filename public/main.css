@@ -16,6 +16,7 @@ html {
 body {
     background-color: transparent;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: #000 0px 0px 8px;
     /* letter-spacing: 0.5px !important; */
 }
 
@@ -47,6 +48,14 @@ ol, ul {
 img {
     display: block;
     width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0;
 }
 
 .block {
