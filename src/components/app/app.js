@@ -41,14 +41,17 @@ export default class App extends Component {
                     
                     <div className="app-content">
                         <ContentPage 
-                            getData={this.dataBase.getAllPeople} 
-                            renderItem={ ({name, gender}) => `${name} ( ${gender} )` }/>
+                            getData={this.dataBase.getAllPeople} >
+                            { ({name, gender}) => `${name} ( ${gender} )` }
+                        </ContentPage>
                         <ContentPage 
-                            getData={this.dataBase.getAllPlanets} 
-                            renderItem={ ({name, diameter}) => `${name} ( ${diameter} )` }/>
+                            getData={this.dataBase.getAllPlanets} >
+                            { ({name, diameter}) => `${name} ( ${diameter} )` }
+                        </ContentPage>
                         <ContentPage 
-                            getData={this.dataBase.getAllStarships} 
-                            renderItem={ ({name, model}) => `${name} ( ${model} )` }/>
+                            getData={this.dataBase.getAllStarships} >
+                            { ({name, model}) => `${name} ( ${model} )` }
+                        </ContentPage>
                     </div>
                 </div>
             </div>

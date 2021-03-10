@@ -3,18 +3,13 @@ import './contentPage.css';
 
 import ItemList from '../itemList';
 import PeopleInfo from '../peopleInfo';
-import Error from '../error';
 import Row from '../row';
+import ErrorBoundry from '../ErrorBoundry';
 
 export default class ContentPage extends Component {
     state = {
-        itemId: null,
-        error: false
+        itemId: null
     };
-
-    componentDidCatch() {
-        this.setState({ error: true });
-    }
 
     setItem = (itemId) => {
         this.setState({ itemId });
@@ -23,21 +18,28 @@ export default class ContentPage extends Component {
     render() {
         const { itemId, error } = this.state;
 
-        const itemList = <ItemList 
-                            setItem={ this.setItem } 
-                            getData={ this.props.getData } 
-                            renderItem={ this.props.renderItem }/>
+        const itemList = (
+            <ErrorBoundry>
+                <ItemList 
+                    setItem={ this.setItem } 
+                    getData={ this.props.getData } 
+                    renderItem={ this.props.children }/>
+            </ErrorBoundry>
+        );
 
-        const peopleInfo = <PeopleInfo personId={itemId} />
-
-        const content = error ? <Error /> 
-            : <Row 
-                firsElem={itemList} 
-                secondElem={peopleInfo} />;
+        const peopleInfo = (
+            <ErrorBoundry>
+                <PeopleInfo personId={itemId} />
+           </ErrorBoundry>
+        );
 
         return (
             <div className="page">
-                { content }
+                <ErrorBoundry >
+                    <Row 
+                        firsElem={itemList} 
+                        secondElem={peopleInfo} />
+                </ErrorBoundry>
             </div>
         );
     }
