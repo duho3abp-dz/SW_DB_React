@@ -4,10 +4,13 @@ import './app.css';
 import Header from '../header';
 import RandomBlock from '../randomBlock';
 import ButtonRandom from '../buttonRandom';
-import PeoplePage from '../peoplePage';
+import ContentPage from '../contentPage';
 import Error from '../error';
+import DataBase from '../../service/dataBase';
 
 export default class App extends Component {
+    dataBase = new DataBase();
+
     state = {
         randomOpen: true,
         error: false
@@ -37,7 +40,15 @@ export default class App extends Component {
                     </div>
                     
                     <div className="app-content">
-                        <PeoplePage />
+                        <ContentPage 
+                            getData={this.dataBase.getAllPeople} 
+                            renderItem={ ({name, gender}) => `${name} ( ${gender} )` }/>
+                        <ContentPage 
+                            getData={this.dataBase.getAllPlanets} 
+                            renderItem={ ({name, diameter}) => `${name} ( ${diameter} )` }/>
+                        <ContentPage 
+                            getData={this.dataBase.getAllStarships} 
+                            renderItem={ ({name, model}) => `${name} ( ${model} )` }/>
                     </div>
                 </div>
             </div>
