@@ -20,20 +20,26 @@ export default class ItemInfo extends Component {
     }
 
     updateItem = () => {
-        const { id } = this.props;
+        const { id, getInfo } = this.props;
         if (!id) return;
 
         this.setState({ loading: true });
 
-        this.props.getInfo(id)
+        getInfo(id)
             .then((item) => this.setState({ item }))
             .finally(() => this.setState({ loading: false }));
     };
 
     render() {
         const { item, loading } = this.state;
+
+        const info = (
+            <RenderItem item={ item }>
+                { this.props.renderInfo(item) }
+            </RenderItem>
+        );
         
-        const content = loading ? <Loader /> : item ? this.props.renderInfo(item) : 'Please, select a person';
+        const content = loading ? <Loader /> : item ? info : 'Please, select a person';
 
         return (
             <div className="block people-info">
@@ -42,3 +48,20 @@ export default class ItemInfo extends Component {
         );
     }
 }
+
+const RenderItem = ({ item, children }) => {
+    const { img, name } = item;
+    return (
+        <>
+            <div className="random-block-wrapper">
+                <img className="random-block-wrapper-picture" src={ img } alt={ name }/>
+            </div>
+            <div className="random-block-info">
+                <h3 className="random-block-info-title">{ name }</h3>
+                <ul className="random-block-info-list">
+                    {children}
+                </ul>
+            </div>
+        </>
+    );
+};

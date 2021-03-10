@@ -46,8 +46,10 @@ export default class DataBase {
     };
 
     _transformPlanet = (planet) => {
+        const id = this._extractId(planet.url);
         return {
-            id: this._extractId(planet.url),
+            id,
+            img: `./img/planets/${ id }.jpg`,
             name: planet.name, 
             diameter: planet.diameter, 
             climate: planet.climate, 
@@ -57,8 +59,10 @@ export default class DataBase {
     };
 
     _transformStarships = (starship) => {
+        const id = this._extractId(starship.url);
         return {
-            id: this._extractId(starship.url),
+            id,
+            img: `./img/starships/${ id }.jpg`,
             name: starship.name, 
             model: starship.model, 
             manufacturer: starship.manufacturer, 
@@ -71,8 +75,10 @@ export default class DataBase {
     };
 
     _transformPeople = (people) => {
+        const id = this._extractId(people.url);
         return {
-            id: this._extractId(people.url),
+            id,
+            img: `./img/characters/${ id }.jpg`,
             name: people.name, 
             gender: people.gender, 
             birthYear: people.birth_year, 

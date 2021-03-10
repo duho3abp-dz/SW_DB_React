@@ -43,16 +43,19 @@ export default class App extends Component {
                     </div>
                     
                     <div className="app-content">
+                        
                         <ContentPage 
                             getData={ this.dataBase.getAllPeople } 
                             renderItem={ ({name, gender}) => `${name} ( ${gender} )` }
                             getInfo={ this.dataBase.getPeople }
                             renderInfo={ (item) => <PersonRender item={item} />} />
+
                         <ContentPage 
                             getData={this.dataBase.getAllPlanets} 
                             renderItem={ ({name, diameter}) => `${name} ( ${diameter} )` }
                             getInfo={ this.dataBase.getPlanet }
                             renderInfo={ (item) => <PlanetRender item={item} />} />
+
                         <ContentPage 
                             getData={this.dataBase.getAllStarships} 
                             renderItem={ ({name, model}) => `${name} ( ${model} )` }
