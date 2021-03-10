@@ -7,6 +7,9 @@ import ButtonRandom from '../buttonRandom';
 import ContentPage from '../contentPage';
 import Error from '../error';
 import DataBase from '../../service/dataBase';
+import PersonRender from '../personRender';
+import PlanetRender from '../planetRender';
+import StarShipRender from '../starShipRender';
 
 export default class App extends Component {
     dataBase = new DataBase();
@@ -41,17 +44,20 @@ export default class App extends Component {
                     
                     <div className="app-content">
                         <ContentPage 
-                            getData={this.dataBase.getAllPeople} >
-                            { ({name, gender}) => `${name} ( ${gender} )` }
-                        </ContentPage>
+                            getData={ this.dataBase.getAllPeople } 
+                            renderItem={ ({name, gender}) => `${name} ( ${gender} )` }
+                            getInfo={ this.dataBase.getPeople }
+                            renderInfo={ (item) => <PersonRender item={item} />} />
                         <ContentPage 
-                            getData={this.dataBase.getAllPlanets} >
-                            { ({name, diameter}) => `${name} ( ${diameter} )` }
-                        </ContentPage>
+                            getData={this.dataBase.getAllPlanets} 
+                            renderItem={ ({name, diameter}) => `${name} ( ${diameter} )` }
+                            getInfo={ this.dataBase.getPlanet }
+                            renderInfo={ (item) => <PlanetRender item={item} />} />
                         <ContentPage 
-                            getData={this.dataBase.getAllStarships} >
-                            { ({name, model}) => `${name} ( ${model} )` }
-                        </ContentPage>
+                            getData={this.dataBase.getAllStarships} 
+                            renderItem={ ({name, model}) => `${name} ( ${model} )` }
+                            getInfo={ this.dataBase.getStarship }
+                            renderInfo={ (item) => <StarShipRender item={item} />} />
                     </div>
                 </div>
             </div>

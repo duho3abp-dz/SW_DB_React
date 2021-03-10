@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './contentPage.css';
 
 import ItemList from '../itemList';
-import PeopleInfo from '../peopleInfo';
+import ItemInfo from '../itemInfo';
 import Row from '../row';
 import ErrorBoundry from '../ErrorBoundry';
 
@@ -23,13 +23,16 @@ export default class ContentPage extends Component {
                 <ItemList 
                     setItem={ this.setItem } 
                     getData={ this.props.getData } 
-                    renderItem={ this.props.children }/>
+                    renderItem={ this.props.renderItem }/>
             </ErrorBoundry>
         );
 
         const peopleInfo = (
             <ErrorBoundry>
-                <PeopleInfo personId={itemId} />
+                <ItemInfo 
+                    id={ itemId }
+                    renderInfo={ this.props.renderInfo }
+                    getInfo={ this.props.getInfo } />
            </ErrorBoundry>
         );
 
