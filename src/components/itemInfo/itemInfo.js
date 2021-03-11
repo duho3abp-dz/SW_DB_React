@@ -35,7 +35,7 @@ export default class ItemInfo extends Component {
 
         const info = (
             <RenderItem item={ item }>
-                { this.props.renderInfo(item) }
+                { this.props.children }
             </RenderItem>
         );
         
@@ -59,9 +59,24 @@ const RenderItem = ({ item, children }) => {
             <div className="random-block-info">
                 <h3 className="random-block-info-title">{ name }</h3>
                 <ul className="random-block-info-list">
-                    {children}
+                    {
+                        React.Children.map(children, (child) => {
+                            return React.cloneElement(child, { item });
+                        })
+                    }
                 </ul>
             </div>
         </>
     );
 };
+
+const ItemClause = ({ item, label, field }) => {
+    return (
+        <li className="random-block-info-item">
+            <span className="random-block-info-name">{ label }:</span>
+            <span className="random-block-info-text">{ item[field] }</span>
+        </li>
+    );
+};
+
+export { ItemClause };

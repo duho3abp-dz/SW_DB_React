@@ -20,19 +20,24 @@ export default class ContentPage extends Component {
 
         const itemList = (
             <ErrorBoundry>
-                <ItemList 
-                    setItem={ this.setItem } 
-                    getData={ this.props.getData } 
-                    renderItem={ this.props.renderItem }/>
+                <div className="block item-list">
+                    <ul className="item-list-collection">
+                        <ItemList 
+                            setItem={ this.setItem } 
+                            getData={ this.props.getData } 
+                            renderItem={ this.props.renderItem }/>
+                    </ul>
+                </div>
             </ErrorBoundry>
         );
 
-        const peopleInfo = (
+        const itemInfo = (
             <ErrorBoundry>
                 <ItemInfo 
                     id={ itemId }
-                    renderInfo={ this.props.renderInfo }
-                    getInfo={ this.props.getInfo } />
+                    getInfo={ this.props.getInfo } >
+                    { this.props.children }
+                </ItemInfo>
            </ErrorBoundry>
         );
 
@@ -41,7 +46,7 @@ export default class ContentPage extends Component {
                 <ErrorBoundry >
                     <Row 
                         firsElem={itemList} 
-                        secondElem={peopleInfo} />
+                        secondElem={itemInfo} />
                 </ErrorBoundry>
             </div>
         );

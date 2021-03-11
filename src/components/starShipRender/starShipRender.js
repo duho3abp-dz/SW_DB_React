@@ -1,15 +1,6 @@
 import React from 'react';
 import './starShipRender.css';
 
-const ItemClause = ({ item, label }) => {
-    return (
-        <li className="random-block-info-item">
-            <span className="random-block-info-name">{ label }:</span>
-            <span className="random-block-info-text">{ item }</span>
-        </li>
-    );
-};
-
 const StarShipRender = ({ item }) => {
     const { model, manufacturer, costInCredits, length, passengers, cargoCapacity, crew } = item;
 

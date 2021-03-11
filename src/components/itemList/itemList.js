@@ -1,31 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './itemList.css';
 
-import Loader from '../loader';
+import { withData } from '../hoc';
+// import DataBase from '../../service/dataBase';
 
-export default class ItemList extends Component {
-    state = {
-        items: []
-    }
-
-    componentDidMount() {
-        const { getData } = this.props;
-
-        getData()
-            .then((items) => this.setState({ items }));
-    }
-
-    renderItems = (arr) => {
+const ItemList = ({ data, renderItem, setItem }) => {
+    const itemRender = (arr) => {
         return arr.map((item) => {
             const { id } = item;
-            const label = this.props.renderItem(item);
-
+            const label = renderItem(item);
+    
             return (
                 <li key={ id } className="item-list-item">
                     <button 
                         className="item-list-button"
                         type="button"
-                        onClick={ () => this.props.setItem(id) } >
+                        onClick={ () => setItem(id) } >
                         { label }
                     </button>
                 </li>
@@ -33,17 +23,9 @@ export default class ItemList extends Component {
         });
     };
 
-    render() {
-        const { items } = this.state;
-
-        const content = !items.length ? <Loader /> : this.renderItems(items);
-
-        return (
-            <div className="block item-list">
-                <ul className="item-list-collection">
-                    { content }
-                </ul>
-            </div>
-        );
-    }
+    return itemRender(data);
 }
+
+// const { getAllPeople } = new DataBase();
+
+export default withData(ItemList);
