@@ -69,14 +69,3 @@ const RenderItem = ({ item, children }) => {
         </>
     );
 };
-
-const ItemClause = ({ item, label, field }) => {
-    return (
-        <li className="random-block-info-item">
-            <span className="random-block-info-name">{ label }:</span>
-            <span className="random-block-info-text">{ item[field] }</span>
-        </li>
-    );
-};
-
-export { ItemClause };

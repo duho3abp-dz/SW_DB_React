@@ -3,8 +3,9 @@ import './contentPage.css';
 
 import ItemList from '../itemList';
 import ItemInfo from '../itemInfo';
-import Row from '../row';
 import ErrorBoundry from '../ErrorBoundry';
+
+import { Row } from '../decorators';
 
 export default class ContentPage extends Component {
     state = {

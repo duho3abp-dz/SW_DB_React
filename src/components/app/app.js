@@ -10,7 +10,17 @@ import DataBase from '../../service/dataBase';
 import PersonRender from '../personRender';
 import PlanetRender from '../planetRender';
 import StarShipRender from '../starShipRender';
-import { ItemClause } from '../itemInfo';
+import { Clause } from '../decorators';
+import { withData } from '../hoc';
+
+import {
+    PeopleList,
+    PlanetList,
+    StarshipList,
+    PeopleInfo,
+    PlanetInfo,
+    StarshipInfo
+} from '../sw-components';
 
 export default class App extends Component {
     dataBase = new DataBase();
@@ -45,37 +55,14 @@ export default class App extends Component {
                     
                     <div className="app-content">
 
-                        <ContentPage 
-                            getData={ this.dataBase.getAllPeople } 
-                            renderItem={ ({name, gender}) => `${name} ( ${gender} )` }
-                            getInfo={ this.dataBase.getPeople } >
-                            <ItemClause label="Gender" field="gender" />
-                            <ItemClause label="Birth year" field="birthYear" />
-                            <ItemClause label="Eye color" field="eyeColor" />
-                        </ContentPage>
+                        <PeopleInfo itemId={11} />
+                        <PlanetInfo itemId={11} />
+                        <StarshipInfo itemId={11} />
 
-                        <ContentPage 
-                            getData={this.dataBase.getAllPlanets} 
-                            renderItem={ ({name, diameter}) => `${name} ( ${diameter} )` }
-                            getInfo={ this.dataBase.getPlanet } >
-                            <ItemClause label="Population" field="population" />
-                            <ItemClause label="Climate" field="climate" />
-                            <ItemClause label="Diameter" field="diameter" />
-                            <ItemClause label="Rotation period" field="rotationPeriod" />
-                        </ContentPage>
+                        <PeopleList renderItem={ ({name, gender}) => `${name} ( ${gender} )` } />
+                        <PlanetList renderItem={ ({name, diameter}) => `${name} ( ${diameter} )` } />
+                        <StarshipList renderItem={ ({name, model}) => `${name} ( ${model} )` } />
 
-                        <ContentPage 
-                            getData={this.dataBase.getAllStarships} 
-                            renderItem={ ({name, model}) => `${name} ( ${model} )` }
-                            getInfo={ this.dataBase.getStarship } >
-                            <ItemClause label="Model" field="model" />
-                            <ItemClause label="Manufacturer" field="manufacturer" />
-                            <ItemClause label="Cost in credits" field="costInCredits" />
-                            <ItemClause label="Length" field="length" />
-                            <ItemClause label="Passengers" field="passengers" />
-                            <ItemClause label="Cargo capacity" field="cargoCapacity" />
-                            <ItemClause label="Crew" field="crew" />
-                        </ContentPage>
                     </div>
                 </div>
             </div>
@@ -84,3 +71,36 @@ export default class App extends Component {
         return error ? <Error /> : app;
     }
 }
+
+
+{/* <ContentPage 
+getData={ this.dataBase.getAllPeople } 
+renderItem={ ({name, gender}) => `${name} ( ${gender} )` }
+getInfo={ this.dataBase.getPeople } >
+<Clause label="Gender" field="gender" />
+<Clause label="Birth year" field="birthYear" />
+<Clause label="Eye color" field="eyeColor" />
+</ContentPage>
+
+<ContentPage 
+getData={this.dataBase.getAllPlanets} 
+renderItem={ ({name, diameter}) => `${name} ( ${diameter} )` }
+getInfo={ this.dataBase.getPlanet } >
+<Clause label="Population" field="population" />
+<Clause label="Climate" field="climate" />
+<Clause label="Diameter" field="diameter" />
+<Clause label="Rotation period" field="rotationPeriod" />
+</ContentPage>
+
+<ContentPage 
+getData={this.dataBase.getAllStarships} 
+renderItem={ ({name, model}) => `${name} ( ${model} )` }
+getInfo={ this.dataBase.getStarship } >
+<Clause label="Model" field="model" />
+<Clause label="Manufacturer" field="manufacturer" />
+<Clause label="Cost in credits" field="costInCredits" />
+<Clause label="Length" field="length" />
+<Clause label="Passengers" field="passengers" />
+<Clause label="Cargo capacity" field="cargoCapacity" />
+<Clause label="Crew" field="crew" />
+</ContentPage> */}
