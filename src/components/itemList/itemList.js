@@ -1,10 +1,10 @@
 import React from 'react';
 import './itemList.css';
 
-const ItemList = ({ data, renderItem, setItem }) => {
+const ItemList = ({ data, children, setItem }) => {
     const items = data.map((item) => {
         const { id } = item;
-        const label = renderItem(item);
+        const label = children(item);
 
         return (
             <li key={ id } className="item-list-item">

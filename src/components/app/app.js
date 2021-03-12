@@ -59,9 +59,9 @@ export default class App extends Component {
                         <PlanetInfo itemId={11} />
                         <StarshipInfo itemId={11} />
 
-                        <PeopleList renderItem={ ({name, gender}) => `${name} ( ${gender} )` } />
-                        <PlanetList renderItem={ ({name, diameter}) => `${name} ( ${diameter} )` } />
-                        <StarshipList renderItem={ ({name, model}) => `${name} ( ${model} )` } />
+                        <PeopleList />
+                        <PlanetList />
+                        <StarshipList />
 
                     </div>
                 </div>
