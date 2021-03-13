@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.css';
 
-const Header = () => {
+const Header = ({ changeService }) => {
     const menuItems = [ 
         { value: 'People', id: 'people' },
         { value: 'Planets', id: 'planets' },
@@ -27,6 +27,13 @@ const Header = () => {
             <nav className="header-nav">
                 <ul className="header-list">{ menuItemsElements }</ul>
             </nav>
+
+            <button 
+                type="button"
+                className="button-service"
+                onClick={ changeService } >
+                Change Service
+            </button>
         </header>
     );
 };

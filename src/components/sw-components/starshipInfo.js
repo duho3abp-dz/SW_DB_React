@@ -3,13 +3,10 @@ import React from 'react';
 import ItemInfo from '../itemInfo';
 import { Clause } from '../decorators';
 import { withDataBase } from '../hoc';
-// import { DataBaseConsumer } from '../dataBaseContext';
 
-const StarshipInfo = ({ itemId, dataBase: {getStarship} }) => {
+const StarshipInfo = (props) => {
     return (
-        <ItemInfo 
-            id={ itemId }
-            getInfo={ getStarship } >
+        <ItemInfo { ...props } >
             <Clause label="Model" field="model" />
             <Clause label="Manufacturer" field="manufacturer" />
             <Clause label="Cost in credits" field="costInCredits" />
@@ -21,4 +18,10 @@ const StarshipInfo = ({ itemId, dataBase: {getStarship} }) => {
     );
 };
 
-export default withDataBase(StarshipInfo);
+const mapMathodsToProps = (dataBase) => {
+    return {
+        getInfo: dataBase.getStarship
+    }
+}
+
+export default withDataBase(StarshipInfo, mapMathodsToProps);

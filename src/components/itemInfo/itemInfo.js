@@ -14,8 +14,11 @@ export default class ItemInfo extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.id === this.props.id) return;
-
+        if (
+            prevProps.id === this.props.id &&
+            prevProps.getInfo === this.props.getInfo
+        ) return;
+        
         this.updateItem();
     }
 

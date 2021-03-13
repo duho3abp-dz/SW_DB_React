@@ -2,12 +2,13 @@ import React from 'react';
 
 import { DataBaseConsumer } from '../dataBaseContext';
 
-const withDataBase = (View) => {
+const withDataBase = (View, mapMethodsToProps) => {
     return (props) => {
         return (
             <DataBaseConsumer>
                 {(dataBase) => {
-                    return <View { ...props } dataBase={ dataBase } />
+                    const serviceProps = mapMethodsToProps(dataBase);
+                    return <View { ...props } { ...serviceProps } />
                 }}
             </DataBaseConsumer>
         );

@@ -34,3 +34,14 @@
 .header-link:hover .header-link__text {
     color: rgb(182, 199, 255);
 }
+
+.button-service {
+    padding: 5px 20px;
+    background-color: rgb(95, 95, 95);
+    border-radius: 10px;
+    transition: background-color .2s ease;
+}
+
+.button-service:hover {
+    background-color: rgb(131, 131, 131);
+}

@@ -5,17 +5,11 @@ import Header from '../header';
 import RandomBlock from '../randomBlock';
 import ButtonRandom from '../buttonRandom';
 import Error from '../error';
-import DataBase from '../../service/dataBase';
 import ErrorBoundry from '../ErrorBoundry';
-
 import { DataBaseProvider } from '../dataBaseContext';
 
-import ContentPage from '../contentPage';
-import PersonRender from '../personRender';
-import PlanetRender from '../planetRender';
-import StarShipRender from '../starShipRender';
-import { Clause } from '../decorators';
-import { withData } from '../hoc';
+import DataBase from '../../service/dataBase';
+import DummyService from '../../service/dummyService';
 
 import {
     PeopleList,
@@ -27,11 +21,10 @@ import {
 } from '../sw-components';
 
 export default class App extends Component {
-    dataBase = new DataBase();
-
     state = {
         randomOpen: true,
-        error: false
+        error: false,
+        dataBase: new DummyService()
     };
 
     componentDidCatch() {
@@ -42,17 +35,24 @@ export default class App extends Component {
         this.setState(({ randomOpen }) => ({ randomOpen: !randomOpen }));
     };
 
+    changeService = () => {
+        this.setState(({ dataBase }) => {
+            const Service = dataBase instanceof DataBase ? DummyService : DataBase;
+            return { dataBase: new Service };
+        })                            
+    }
+
     render() {
-        const { randomOpen, error } = this.state;
+        const { randomOpen, error, dataBase } = this.state;
         
         const random = randomOpen ? <RandomBlock /> : null;
 
         const app = (
             <ErrorBoundry>
-                <DataBaseProvider value={ this.dataBase } >
+                <DataBaseProvider value={ dataBase } >
                     <div className="app">
                         <div className="app-wrapper">
-                            <Header />
+                            <Header changeService={ this.changeService } />
                             { random }
             
                             <div className="app-toggle">
@@ -61,9 +61,9 @@ export default class App extends Component {
                             
                             <div className="app-content">
 
-                                <PeopleInfo itemId={ 11 } />
-                                <PlanetInfo itemId={ 11 } />
-                                <StarshipInfo itemId={ 11 } />
+                                <PeopleInfo id={ 11 } />
+                                <PlanetInfo id={ 11 } />
+                                <StarshipInfo id={ 11 } />
 
                                 <PeopleList />
                                 <PlanetList />
@@ -79,36 +79,3 @@ export default class App extends Component {
         return error ? <Error /> : app;
     }
 }
-
-
-{/* <ContentPage 
-getData={ this.dataBase.getAllPeople } 
-renderItem={ ({name, gender}) => `${name} ( ${gender} )` }
-getInfo={ this.dataBase.getPeople } >
-<Clause label="Gender" field="gender" />
-<Clause label="Birth year" field="birthYear" />
-<Clause label="Eye color" field="eyeColor" />
-</ContentPage>
-
-<ContentPage 
-getData={this.dataBase.getAllPlanets} 
-renderItem={ ({name, diameter}) => `${name} ( ${diameter} )` }
-getInfo={ this.dataBase.getPlanet } >
-<Clause label="Population" field="population" />
-<Clause label="Climate" field="climate" />
-<Clause label="Diameter" field="diameter" />
-<Clause label="Rotation period" field="rotationPeriod" />
-</ContentPage>
-
-<ContentPage 
-getData={this.dataBase.getAllStarships} 
-renderItem={ ({name, model}) => `${name} ( ${model} )` }
-getInfo={ this.dataBase.getStarship } >
-<Clause label="Model" field="model" />
-<Clause label="Manufacturer" field="manufacturer" />
-<Clause label="Cost in credits" field="costInCredits" />
-<Clause label="Length" field="length" />
-<Clause label="Passengers" field="passengers" />
-<Clause label="Cargo capacity" field="cargoCapacity" />
-<Clause label="Crew" field="crew" />
-</ContentPage> */}

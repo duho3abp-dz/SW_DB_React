@@ -4,11 +4,9 @@ import ItemInfo from '../itemInfo';
 import { Clause } from '../decorators';
 import { withDataBase } from '../hoc';
 
-const PeopleInfo = ({ itemId, dataBase: {getPeople} }) => {
+const PeopleInfo = (props) => {
     return (
-        <ItemInfo 
-            id={ itemId }
-            getInfo={ getPeople } >
+        <ItemInfo { ...props } >
             <Clause label="Gender" field="gender" />
             <Clause label="Birth year" field="birthYear" />
             <Clause label="Eye color" field="eyeColor" />
@@ -16,4 +14,10 @@ const PeopleInfo = ({ itemId, dataBase: {getPeople} }) => {
     );
 };
 
-export default withDataBase(PeopleInfo);
+const mapMathodsToProps = (dataBase) => {
+    return {
+        getInfo: dataBase.getPeople
+    }
+}
+
+export default withDataBase(PeopleInfo, mapMathodsToProps);
