@@ -4,9 +4,13 @@ import './app.css';
 import Header from '../header';
 import RandomBlock from '../randomBlock';
 import ButtonRandom from '../buttonRandom';
-import ContentPage from '../contentPage';
 import Error from '../error';
 import DataBase from '../../service/dataBase';
+import ErrorBoundry from '../ErrorBoundry';
+
+import { DataBaseProvider } from '../dataBaseContext';
+
+import ContentPage from '../contentPage';
 import PersonRender from '../personRender';
 import PlanetRender from '../planetRender';
 import StarShipRender from '../starShipRender';
@@ -44,28 +48,32 @@ export default class App extends Component {
         const random = randomOpen ? <RandomBlock /> : null;
 
         const app = (
-            <div className="app">
-                <div className="app-wrapper">
-                    <Header />
-                    { random }
-    
-                    <div className="app-toggle">
-                        <ButtonRandom toggleRandomBlock={ this.toggleRandomBlock } />
+            <ErrorBoundry>
+                <DataBaseProvider value={ this.dataBase } >
+                    <div className="app">
+                        <div className="app-wrapper">
+                            <Header />
+                            { random }
+            
+                            <div className="app-toggle">
+                                <ButtonRandom toggleRandomBlock={ this.toggleRandomBlock } />
+                            </div>
+                            
+                            <div className="app-content">
+
+                                <PeopleInfo itemId={ 11 } />
+                                <PlanetInfo itemId={ 11 } />
+                                <StarshipInfo itemId={ 11 } />
+
+                                <PeopleList />
+                                <PlanetList />
+                                <StarshipList />
+
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div className="app-content">
-
-                        <PeopleInfo itemId={11} />
-                        <PlanetInfo itemId={11} />
-                        <StarshipInfo itemId={11} />
-
-                        <PeopleList />
-                        <PlanetList />
-                        <StarshipList />
-
-                    </div>
-                </div>
-            </div>
+                </DataBaseProvider>
+            </ErrorBoundry>
         );
 
         return error ? <Error /> : app;
