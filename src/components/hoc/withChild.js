@@ -1,6 +1,6 @@
 import React from 'react';
 
-const withChild = (View, fn) => {
+const withChild = (fn) => (View) => {
     return (props) => {
         return (
             <View { ...props } >

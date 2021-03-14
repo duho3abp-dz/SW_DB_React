@@ -2,7 +2,7 @@ import React from 'react';
 
 import { DataBaseConsumer } from '../dataBaseContext';
 
-const withDataBase = (View, mapMethodsToProps) => {
+const withDataBase = (mapMethodsToProps) => (View) => {
     return (props) => {
         return (
             <DataBaseConsumer>

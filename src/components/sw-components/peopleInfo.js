@@ -20,4 +20,4 @@ const mapMathodsToProps = (dataBase) => {
     }
 }
 
-export default withDataBase(PeopleInfo, mapMathodsToProps);
+export default withDataBase(mapMathodsToProps)(PeopleInfo);

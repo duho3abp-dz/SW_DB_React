@@ -24,4 +24,4 @@ const mapMathodsToProps = (dataBase) => {
     }
 }
 
-export default withDataBase(StarshipInfo, mapMathodsToProps);
+export default withDataBase(mapMathodsToProps)(StarshipInfo);

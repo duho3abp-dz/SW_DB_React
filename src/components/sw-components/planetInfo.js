@@ -21,4 +21,4 @@ const mapMathodsToProps = (dataBase) => {
     }
 }
 
-export default  withDataBase(PlanetInfo, mapMathodsToProps);
+export default  withDataBase(mapMathodsToProps)(PlanetInfo);

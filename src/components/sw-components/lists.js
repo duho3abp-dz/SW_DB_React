@@ -1,7 +1,13 @@
 import React from 'react';
 
 import ItemList from '../itemList';
-import { withData, withChild, withDataBase } from '../hoc';
+
+import { 
+    withData, 
+    withChild, 
+    withDataBase, 
+    compose 
+} from '../hoc';
 
 
 const peopleFunc = ({name, gender}) => <span>{ name } ({ gender })</span>;
@@ -12,17 +18,20 @@ const mapPeopleMethodsToProps = (get) => ({ getData: get.getAllPeople });
 const mapPlanetMethodsToProps = (get) => ({ getData: get.getAllPlanets });
 const mapStarshipMethodsToProps = (get) => ({ getData: get.getAllStarships });
 
-export const PeopleList = withDataBase(
-    withData(withChild(ItemList, peopleFunc)),
-    mapPeopleMethodsToProps
-);
+export const PeopleList = compose(
+    withDataBase(mapPeopleMethodsToProps),
+    withData,
+    withChild(peopleFunc)
+)(ItemList);
 
-export const PlanetList = withDataBase(
-    withData(withChild(ItemList, planetFunc)),
-    mapPlanetMethodsToProps
-);
+export const PlanetList = compose(
+    withDataBase(mapPlanetMethodsToProps),
+    withData,
+    withChild(planetFunc)
+)(ItemList);
 
-export const StarshipList = withDataBase(
-    withData(withChild(ItemList, starshipFunc)),
-    mapStarshipMethodsToProps
-);
+export const StarshipList = compose(
+    withDataBase(mapStarshipMethodsToProps),
+    withData,
+    withChild(starshipFunc)
+)(ItemList);
