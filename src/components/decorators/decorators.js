@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './decorators.css';
 
 export const Row = ({ left, right }) => {
@@ -9,6 +10,11 @@ export const Row = ({ left, right }) => {
         </div>
     );
 };
+
+Row.propTypes = {
+    left: PropTypes.node.isRequired,
+    right: PropTypes.node.isRequired
+}
 
 export const Clause = ({ item, label, field }) => {
     return (

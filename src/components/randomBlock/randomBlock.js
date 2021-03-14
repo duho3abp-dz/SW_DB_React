@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './randomBlock.css';
 
 import DataBase from '../../service/dataBase';
@@ -6,6 +7,14 @@ import Loader from '../loader';
 import Error from '../error';
 
 export default class RandomBlock extends Component {
+    static defaultProps = {
+        updateInterval: 10000
+    };
+
+    static propTypes = {
+        updateInterval: PropTypes.number
+    }
+
     dataBase = new DataBase();
 
     state = {
@@ -15,8 +24,9 @@ export default class RandomBlock extends Component {
     }
 
     componentDidMount() {
+        const { updateInterval } = this.props;
         this.updatePlanet();
-        this.interval = setInterval(() => this.updatePlanet(), 5000);
+        this.interval = setInterval(() => this.updatePlanet(), updateInterval);
     }
 
     componentWillUnmount() {

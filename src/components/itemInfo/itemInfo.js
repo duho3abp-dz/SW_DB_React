@@ -42,7 +42,7 @@ export default class ItemInfo extends Component {
             </RenderItem>
         );
         
-        const content = loading ? <Loader /> : item ? info : 'Please, select a person';
+        const content = loading ? <Loader /> : item ? info : 'Please, select a item from the list';
 
         return (
             <div className="block people-info">
