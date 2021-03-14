@@ -25,7 +25,10 @@ const withData = (View) => {
         updateData = () => {
             const { getData } = this.props;
 
-            this.setState({ loading: true });
+            this.setState({ 
+                loading: true,
+                error: false
+            });
 
             getData()
                 .then((data) => this.setState({ data }))

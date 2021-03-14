@@ -16,6 +16,10 @@
     border-radius: 7px;
     background-color: rgb(58, 58, 58);
     transition: background-color .2s ease;
+    padding: 3px 0;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: #000 0px 0px 8px;
+    font-size: 16px;
 }
 
 .item-list-button:hover {

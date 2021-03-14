@@ -40,6 +40,10 @@
     background-color: rgb(95, 95, 95);
     border-radius: 10px;
     transition: background-color .2s ease;
+    padding: 3px 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: #000 0px 0px 8px;
+    font-size: 18px;
 }
 
 .button-service:hover {

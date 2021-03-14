@@ -12,8 +12,13 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.row:last-child {
+    margin-bottom: unset;
 }
 
 .column {
-    width: 48%;
+    width: 51%;
 }

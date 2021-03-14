@@ -1,7 +1,0 @@
-.page {
-    margin-top: 20px;
-}
-
-.page:first-child {
-    margin-top: unset;
-}

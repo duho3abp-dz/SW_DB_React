@@ -1,11 +1,11 @@
 import React from 'react';
 import './decorators.css';
 
-export const Row = ({ firsElem, secondElem }) => {
+export const Row = ({ left, right }) => {
     return (
         <div className="row">
-            {firsElem}
-            {secondElem}
+            { left }
+            { right }
         </div>
     );
 };
