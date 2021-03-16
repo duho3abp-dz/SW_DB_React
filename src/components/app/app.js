@@ -3,7 +3,6 @@ import './app.css';
 
 import Header from '../header';
 import RandomBlock from '../randomBlock';
-import Error from '../error';
 import ErrorBoundry from '../ErrorBoundry';
 import { DataBaseProvider } from '../dataBaseContext';
 
