@@ -22,3 +22,7 @@
 .column {
     width: 51%;
 }
+
+.wide {
+    width: 100%;
+}

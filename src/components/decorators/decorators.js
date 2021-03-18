@@ -25,11 +25,15 @@ export const Clause = ({ item, label, field }) => {
     );
 };
 
-export const Block = ({ children, className = 'column' }) => {
-    const clazz = `block ${ className }`
+export const Block = ({ children, classNames }) => {
+    const clazz = `block ${ classNames }`
     return (
         <div className={ clazz }>
             { children }
         </div>
     ); 
+};
+
+Block.defaultProps = {
+    classNames: 'column'
 };

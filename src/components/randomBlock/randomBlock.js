@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './randomBlock.css';
 
+import { Block } from '../decorators';
 import DataBase from '../../service/dataBase';
 import Loader from '../loader';
 import Error from '../error';
@@ -62,7 +63,11 @@ export default class RandomBlock extends Component {
             : loading 
             ? <Loader /> : <PlanetView planet={ planet } />;
 
-        return <div className="block random-block">{ content }</div>;
+        return (
+            <Block classNames="random-block">
+                { content }
+            </Block>
+        );
     }
 }
 

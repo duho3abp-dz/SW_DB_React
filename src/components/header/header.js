@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './header.css';
 
 const Header = ({ changeService }) => {
@@ -9,20 +11,21 @@ const Header = ({ changeService }) => {
     ]
 
     const menuItemsElements = menuItems.map(({ value, id }) => {
+        const link = value.toLowerCase();
         return (
             <li key={ id } className="header-item">
-                <a href="#" className="header-link">
+                <Link to={ `/${link}` } className="header-link">
                     <span className="header-link__text">{ value }</span>
-                </a>
+                </Link>
             </li>
         );
     });
 
     return (
         <header className="header">
-            <a className="header__title-link" href="#">
+            <Link className="header__title-link" to="/">
                 <h1 className="title">StarWars DB</h1>
-            </a>
+            </Link>
 
             <nav className="header-nav">
                 <ul className="header-list">{ menuItemsElements }</ul>
