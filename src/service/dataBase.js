@@ -49,7 +49,7 @@ export default class DataBase {
         const id = this._extractId(planet.url);
         return {
             id,
-            img: `./img/planets/${ id }.jpg`,
+            img: `/img/planets/${ id }.jpg`,
             name: planet.name, 
             diameter: planet.diameter, 
             climate: planet.climate, 
@@ -62,7 +62,7 @@ export default class DataBase {
         const id = this._extractId(starship.url);
         return {
             id,
-            img: `./img/starships/${ id }.jpg`,
+            img: `/img/starships/${ id }.jpg`,
             name: starship.name, 
             model: starship.model, 
             manufacturer: starship.manufacturer, 
@@ -78,7 +78,7 @@ export default class DataBase {
         const id = this._extractId(people.url);
         return {
             id,
-            img: `./img/characters/${ id }.jpg`,
+            img: `/img/characters/${ id }.jpg`,
             name: people.name, 
             gender: people.gender, 
             birthYear: people.birth_year, 

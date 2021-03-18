@@ -77,7 +77,7 @@ const PlanetView = ({ planet }) => {
     return (
         <>
             <div className="random-block-wrapper">
-                <img className="random-block-wrapper-picture" src={ `./img/planets/${ id }.jpg` } alt={ name }/>
+                <img className="random-block-wrapper-picture" src={ `/img/planets/${ id }.jpg` } alt={ name }/>
             </div>
             <div className="random-block-info">
                 <h3 className="random-block-info-title">{ name }</h3>
